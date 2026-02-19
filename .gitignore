@@ -1,0 +1,15 @@
+# Node
+node_modules/
+
+# Environment
+.env
+
+# Editor
+.vscode/
+*.swp
+
+# macOS
+.DS_Store
+
+# Build
+dist/

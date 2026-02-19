@@ -1,0 +1,8 @@
+{
+  "open": "chrome",
+  "port": 5500,
+  "root": ".",
+  "host": "localhost",
+  "liveReload": true,
+  "indexFile": "index.html"
+}

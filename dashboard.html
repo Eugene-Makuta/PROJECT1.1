@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Lost & Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-blue-600 text-white p-4 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">University Lost & Found</h1>
+            <div class="space-x-4">
+                <a href="index.html" class="hover:bg-blue-700 px-4 py-2 rounded">Home</a>
+                <a href="report.html" class="hover:bg-blue-700 px-4 py-2 rounded">Report Item</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800">Lost Items Dashboard</h1>
+        
+        <div id="items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <p class="text-gray-500">Loading items...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    async function loadItems() {
+        try {
+            const response = await fetch("https://your-backend.onrender.com/items");
+            const items = await response.json();
+            displayItems(items);
+        } catch (error) {
+            displayDemoItems();
+        }
+    }
+
+    function displayItems(items) {
+        const container = document.getElementById("items-container");
+        
+        if (items.length === 0) {
+            container.innerHTML = '<p class="text-gray-500 col-span-3 text-center">No items reported yet.</p>';
+            return;
+        }
+
+        container.innerHTML = items.map(item => `
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                ${item.image ? `<img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">` : ''}
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${item.name}</h3>
+                    <p class="text-gray-600 mb-2">${item.description}</p>
+                    <p class="text-sm text-gray-500 mb-2"><strong>Location:</strong> ${item.location}</p>
+                    <p class="text-sm text-gray-500 mb-4"><strong>Contact:</strong> ${item.contact}</p>
+                    <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700" onclick="alert('Contact: ${item.contact}')">
+                        Contact
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function displayDemoItems() {
+        const demoItems = [
+            {
+                name: "Black Backpack",
+                description: "Black Nike backpack with laptop compartment",
+                location: "Library Floor 3",
+                contact: "john@university.edu",
+                image: "https://via.placeholder.com/300x200?text=Black+Backpack"
+            },
+            {
+                name: "Silver Watch",
+                description: "Apple Watch Series 6, silver band",
+                location: "Cafeteria",
+                contact: "sarah@university.edu",
+                image: "https://via.placeholder.com/300x200?text=Silver+Watch"
+            },
+            {
+                name: "Brown Wallet",
+                description: "Leather wallet with student ID inside",
+                location: "Science Building",
+                contact: "mike@university.edu",
+                image: "https://via.placeholder.com/300x200?text=Brown+Wallet"
+            }
+        ];
+        
+        displayItems(demoItems);
+    }
+
+    loadItems();
+    </script>
+</body>
+</html>
