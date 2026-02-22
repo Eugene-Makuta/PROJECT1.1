@@ -1,0 +1,47 @@
+{
+  "clientName": "Thunder Client",
+  "dateExported": "2026-02-21T00:00:00.000Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "name": "E-Lost-and-Found",
+      "id": "folder1",
+      "requests": [
+        {
+          "id": "req1",
+          "name": "Register",
+          "url": "https://e-lost-and-found.onrender.com/api/auth/register",
+          "method": "POST",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"securePassword123\",\n  \"role\": \"ROLE_USER\"\n}"
+          },
+          "tests": []
+        },
+        {
+          "id": "req2",
+          "name": "Login",
+          "url": "https://e-lost-and-found.onrender.com/api/auth/login",
+          "method": "POST",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"securePassword123\"\n}"
+          },
+          "tests": []
+        }
+      ]
+    }
+  ]
+}

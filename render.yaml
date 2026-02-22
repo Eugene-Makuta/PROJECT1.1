@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lost-and-found-api
+    runtime: docker
+    region: ohio
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: PORT
+        value: 8080
