@@ -10,7 +10,7 @@ async function register() {
   }
 
   try {
-    const res = await fetch("https://your-backend.onrender.com/auth/register", {
+    const res = await fetch("https://e-lost-and-found.onrender.com/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, role: "ROLE_USER" })

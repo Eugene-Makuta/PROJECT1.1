@@ -7,7 +7,7 @@ async function loadItems() {
   }
 
   try {
-    const res = await fetch("https://your-backend.onrender.com/admin/all-items", {
+    const res = await fetch("https://e-lost-and-found.onrender.com/api/admin/all-items", {
       headers: { "Authorization": "Bearer " + token }
     });
 
@@ -23,7 +23,7 @@ async function loadItems() {
         <p><strong>Location:</strong> ${item.location}</p>
         <p><strong>Reported At:</strong> ${new Date(item.reportedAt).toLocaleString()}</p>
         <p><strong>Reward:</strong> ${item.rewardAmount || 0}</p>
-        <img src="https://your-backend.onrender.com/${item.qrCodePath}" width="100" class="mt-2"/>
+        <img src="https://e-lost-and-found.onrender.com/api/${item.qrCodePath}" width="100" class="mt-2"/>
       </div>
     `).join("");
 
