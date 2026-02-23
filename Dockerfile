@@ -7,7 +7,7 @@ COPY . .
 RUN mvn clean install -DskipTests
 
 # Runtime stage
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:11-jre-slim
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 
