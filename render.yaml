@@ -1,11 +1,37 @@
-services:
-  - type: web
-    name: lost-and-found-api
-    runtime: docker
-    region: ohio
-    plan: free
-    buildCommand: ""
-    startCommand: ""
-    envVars:
-      - key: PORT
-        value: 8080
+# Exported from Render on 2026-02-23
+version: "1"
+projects:
+- name: Lost and Found
+  environments:
+  - name: Production
+    services:
+    # Backend API
+    - type: web
+      name: lost-and-found-api
+      runtime: docker
+      repo: https://github.com/Eugene-Makuta/PROJECT1.1
+      plan: free
+      envVars:
+      - key: JWT_SECRET
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_URL
+        sync: false
+      region: ohio
+      dockerContext: .
+      dockerfilePath: ./Dockerfile
+      autoDeployTrigger: commit
+
+    # Frontend Website
+    - type: web
+      name: lost-and-found-frontend
+      runtime: docker
+      repo: https://github.com/Eugene-Makuta/PROJECT1.1
+      plan: free
+      region: ohio
+      dockerContext: .
+      dockerfilePath: ./Dockerfile.frontend
+      autoDeployTrigger: commit
